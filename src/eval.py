@@ -3,7 +3,6 @@ import torch.nn as nn
 from torchvision import transforms, datasets
 from torch.utils.data import DataLoader
 from model import BinaryImageClassification
-import numpy as np
 from tqdm import tqdm
 
 test_dataset_path = "data\Tests"

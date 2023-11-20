@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-import numpy as np
 import torch
 import torchvision
 import torch.optim as optim
@@ -9,7 +7,6 @@ from torchvision import datasets, transforms
 from torchvision.transforms import ToTensor
 from model import BinaryImageClassification
 from tqdm import tqdm
-import PIL
 from PIL import Image
 import os
 
