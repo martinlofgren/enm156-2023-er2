@@ -13,11 +13,19 @@ import PIL
 from PIL import Image
 import os
 
-#training loop
-num_epochs = 10
-data_path = "data/PetImages"
+#number of training loops
+num_epochs = 25
+
+#How many images is loaded at once
 batch_size = 128
+
+#Image size to transform data to, Ex 224 mean 224x224 pixels
 image_size = 224
+
+#path to parentfolder of categories
+data_path = "data/PetImages" 
+
+#path to subfolders
 folder_paths = [
     "data/PetImages/Cat",
     "data/PetImages/Dog"
@@ -43,7 +51,7 @@ device = (
 )
 print(f"Using {device} device")
 
-# All data transforms from this, imageSize
+# Transform all data to same size.
 transform = transforms.Compose([
     transforms.Resize((image_size, image_size)),
     transforms.ToTensor(),
@@ -55,7 +63,7 @@ train_dataset = datasets.ImageFolder(root = data_path, transform = transform)
 #create the data loader
 train_loader = DataLoader(dataset=train_dataset, batch_size = batch_size, shuffle = True)
 
-#import model and move to device
+#import model and move to device to use CUDA if available
 model = BinaryImageClassification()
 model.to(device)
 
@@ -63,29 +71,26 @@ model.to(device)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
+# Place model in train mode
+model.train()
 
-
+#train model
 for epoch in range(num_epochs):
-    model.train()
-
     # Use tqdm to create a progress bar for the training loader
     with tqdm(train_loader, desc=f"Epoch {epoch+1}/{num_epochs}", unit="batch") as t:
         for inputs, labels in t:
-            try:
-                inputs, labels = inputs.to(device), labels.to(device)
+            #Move the input data and labels to the specified device
+            inputs, labels = inputs.to(device), labels.to(device)
 
-                optimizer.zero_grad()
+            #Clear the gradients of the model parameters for a new batch.
+            optimizer.zero_grad()
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
 
-                outputs = model(inputs)
+            # Update the progress bar with the current loss
+            t.set_postfix(loss=loss.item())
 
-                loss = criterion(outputs, labels)
-
-                loss.backward()
-                optimizer.step()
-
-                # Update the progress bar with the current loss
-                t.set_postfix(loss=loss.item())
-            except Exception as e:
-                print(f"Error: {e}")
-
+#save trained model to specified path
 torch.save(model.state_dict(), "data/model")

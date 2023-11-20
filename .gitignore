@@ -2,3 +2,4 @@
 /venv
 *.png
 *.jpg
+__pycache__/
