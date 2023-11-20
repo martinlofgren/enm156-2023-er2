@@ -6,13 +6,7 @@
 
 - Add photos to ./data/Tests/ for testing
 
-- Set up a virtual environment and install dependencies:
-
-  ```sh
-  $ py -m venv venv
-  $ run venv/Scripts/activate
-  $ pip install -r requirements.txt
-  ```
+- install pytorch with: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 
 - run src/train.py to train model
 
