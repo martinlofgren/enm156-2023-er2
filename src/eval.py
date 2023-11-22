@@ -19,7 +19,7 @@ eval_dataset = datasets.ImageFolder(root=test_dataset_path, transform=transform)
 class_mapping = {0: 'cat', 1: 'dog'}
 
 model = BinaryImageClassification()
-model.load_state_dict(torch.load('data\model'))
+model.load_state_dict(torch.load('data\model.pth'))
 model.eval()
 
 test_loader = torch.utils.data.DataLoader(eval_dataset, batch_size=batch_size, shuffle=False)

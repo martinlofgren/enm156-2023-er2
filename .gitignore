@@ -1,5 +1,7 @@
-/data
 /venv
 *.png
 *.jpg
+*.pdf
+*.pth
+*.txt
 __pycache__/

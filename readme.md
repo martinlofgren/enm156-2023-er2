@@ -7,6 +7,8 @@ and unzip it to ./data/
 
 - run pip install -r requirements.txt
 
+- py src/clean_data.py to find any data that the model can not handle
+
 - py src/train.py to train model
 
 - py src/eval.py to test it

@@ -7,8 +7,6 @@ from torchvision import datasets, transforms
 from torchvision.transforms import ToTensor
 from model import BinaryImageClassification
 from tqdm import tqdm
-from PIL import Image
-import os
 
 #number of training loops
 num_epochs = 25
@@ -21,22 +19,6 @@ image_size = 224
 
 #path to parentfolder of categories
 data_path = "data/PetImages" 
-
-#path to subfolders
-folder_paths = [
-    "data/PetImages/Cat",
-    "data/PetImages/Dog"
-]
-
-#removes files that are not readable, remove last 2 lines to remove files manually instead
-for folder_path in folder_paths:
-    for filename in os.listdir(folder_path):
-        try:
-            image = Image.open(os.path.join(folder_path, filename))
-        except PIL.UnidentifiedImageError as e:
-            print(f"Error in file {filename}: {e}")
-            os.remove(os.path.join(folder_path, filename))
-            print(f"Removed file {filename}")
 
 # check if cuda is available
 device = (
@@ -65,8 +47,8 @@ model = BinaryImageClassification()
 model.to(device)
 
 # Define loss function and optimizer
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+criterion = nn.CrossEntropyLoss() #should check if BCEloss is better since that is made for binary classification
+optimizer = optim.Adam(model.parameters(), lr=0.001) #should test with different optimizers to compare accuracy
 
 # Place model in train mode
 model.train()
@@ -90,4 +72,4 @@ for epoch in range(num_epochs):
             t.set_postfix(loss=loss.item())
 
 #save trained model to specified path
-torch.save(model.state_dict(), "data/model")
+torch.save(model.state_dict(), "data/model.pth")
