@@ -12,3 +12,9 @@ Converted some-annotation-file.xml and wrote to some-annotation-file.txt
 $ cat some-annotation-file.txt
 0 0.786 0.851 0.190 0.292
 ```
+
+To use it on multiple files at once, it can be scripted (in *nix:es):
+
+```sh
+$ for f in *.xml; do python src/xml-to-yolo.py $f; done
+```
