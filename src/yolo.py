@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw
 import cv2
 
 
-image_path = "C:/Users/nilsa/Pictures/complete-streets-feature-erwin-tennessee-main-street.jpg"
+image_path = "C:/Users/nilsa/Pictures/street.jpg"
 model = YOLO('yolov8n.pt')
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -13,7 +13,7 @@ def main():
     image = cv2.imread(image_path)
 
     for r in results:
-        print(r.names)
+        namn = r.names
         tens = r.boxes.xywhn
         clas = r.boxes.cls
         (y, x) = r.boxes.orig_shape
@@ -25,18 +25,16 @@ def main():
             hMul = tup[1][3].item()
             corners = bound(x,y,xMul,yMul,wMul,hMul)
             
-            namn = r.names
-            cv2.rectangle(image, corners[0], corners[1], (0, 0, 255), 1)
-            cv2.putText(image, "Car", corners[0], font, 0.3, (0,0,255), 1)
-            #if tup[0].item() == 2.0:
-                #cv2.putText(image, "Car", corners[0], font, 0.3, (0,0,255), 1)
-            #if tup[0].item() == 9.0:
-                #cv2.putText(image, "Traffic light", corners[0], font, 0.3, (0,0,255), 1)
+            label = namn[int(tup[0].item())]
+            
+            cv2.rectangle(image, corners[0], corners[1], (0, 0, 255), 2)
+            cv2.putText(image, label, corners[0], font, 0.5, (0,0,255), 2)
+            
         
 
     #cv2.imshow("image", image)
     #cv2.waitKey(0)
-    #cv2.imwrite("resultat.jpg", image)
+    cv2.imwrite("resultat.jpg", image)
 
 
 def bound(xOrg, yOrg, xMul, yMul, wMul, hMul):
