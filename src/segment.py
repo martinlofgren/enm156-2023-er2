@@ -8,7 +8,7 @@ model = fasterrcnn_resnet50_fpn(pretrained=True)
 model.eval()
 
 # Load the image
-image_path = "C:/Users/nilsa/Pictures/images.jfif"
+image_path = "C:/Users/nilsa/Pictures/ID_2_2021-05-24_13-43-29.jpg"
 image = Image.open(image_path).convert('RGB')
 
 # Define the transformation
@@ -26,7 +26,7 @@ image = Image.open(image_path).convert('RGB')
 draw = ImageDraw.Draw(image)
 
 # Set a threshold for confidence to filter out weak detections
-threshold = 0.5
+threshold = 0.4
 
 # Iterate through the predictions
 for score, label, box in zip(prediction[0]['scores'], prediction[0]['labels'], prediction[0]['boxes']):
