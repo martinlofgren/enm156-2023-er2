@@ -7,12 +7,25 @@ image_path = "C:/Users/nilsa/Pictures/street.jpg"
 model = YOLO('yolov8n.pt')
 font = cv2.FONT_HERSHEY_SIMPLEX
 
+results = model(image_path)
+for r in results:
+    im_array = r.plot()  # plot a BGR numpy array of predictions
+    im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
+    im.show()  # show image
+    im.save('results.jpg')  # save image
+
+
+"""
 def main():
     results = model(image_path)
 
-    image = cv2.imread(image_path)
+    #image = cv2.imread(image_path)
 
+    
+    
     for r in results:
+        
+
         namn = r.names
         tens = r.boxes.xywhn
         clas = r.boxes.cls
@@ -35,7 +48,7 @@ def main():
     #cv2.imshow("image", image)
     #cv2.waitKey(0)
     cv2.imwrite("resultat.jpg", image)
-
+    
 
 def bound(xOrg, yOrg, xMul, yMul, wMul, hMul):
     xCenter = xOrg * xMul
@@ -54,6 +67,4 @@ def tupList(cls, tens):
 
     return tuplist
 
-
-if __name__ == "__main__":
-    main()
+"""
