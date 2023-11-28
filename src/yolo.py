@@ -3,13 +3,17 @@ from PIL import Image, ImageDraw
 import cv2
 
 
-image_path = "C:/Users/nilsa/Pictures/street.jpg"
-model = YOLO('yolov8n.pt')
-font = cv2.FONT_HERSHEY_SIMPLEX
+image_path1 = "C:/Users/nilsa/Pictures/street.jpg"
+image_path2 = "C:/Users/nilsa/Pictures/complete-streets-feature-erwin-tennessee-main-street.jpg"
+image_path3 = "C:/Users/nilsa/Pictures/street2.jpg"
+model = YOLO('yolov8x.pt')
+#font = cv2.FONT_HERSHEY_SIMPLEX
 
-results = model(image_path)
+results = model([image_path1, image_path2, image_path3], conf=0.4)
+
 for r in results:
-    im_array = r.plot()  # plot a BGR numpy array of predictions
+    im_array = r.plot(conf=True, line_width=2, font_size=2, font='Arial.ttf', pil=False, img=None,
+                        im_gpu=None, kpt_radius=5, kpt_line=True, labels=True, boxes=True, masks=True, probs=True)
     im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
     im.show()  # show image
     im.save('results.jpg')  # save image
