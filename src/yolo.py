@@ -3,21 +3,18 @@ from PIL import Image, ImageDraw
 import cv2
 
 
-image_path1 = "C:/Users/nilsa/Pictures/street.jpg"
-image_path2 = "C:/Users/nilsa/Pictures/complete-streets-feature-erwin-tennessee-main-street.jpg"
-image_path3 = "C:/Users/nilsa/Pictures/street2.jpg"
-model = YOLO('yolov8x.pt')
+image_path1 = "C:/Users/Jakob/OneDrive - Chalmers/ENM156 - Hållbar utveckling och etik/Bees/AWS/Pollen/beehive/images/beehive-2020-08-10_20-10-32.jpg"
+video_path = "C:/Users/Jakob\OneDrive - Chalmers/ENM156 - Hållbar utveckling och etik/Bees/video_le1/beehive-2020-07-21_09-59-24.mp4"
+model = YOLO('C:/Users/Jakob/Documents/GitHub/enm156-2023-er2/src/runs/detect/train13/weights/best.pt')
 #font = cv2.FONT_HERSHEY_SIMPLEX
 
-results = model([image_path1, image_path2, image_path3], conf=0.4)
+results = model(video_path, stream=True)
 
-for r in results:
-    im_array = r.plot(conf=True, line_width=2, font_size=2, font='Arial.ttf', pil=False, img=None,
-                        im_gpu=None, kpt_radius=5, kpt_line=True, labels=True, boxes=True, masks=True, probs=True)
-    im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
-    im.show()  # show image
-    im.save('results.jpg')  # save image
-
+# for r in results:
+#     im_array = r.plot(conf=True, line_width=2, font_size=2, font='Arial.ttf', pil=False, img=None,
+#                         im_gpu=None, kpt_radius=5, kpt_line=True, labels=True, boxes=True, masks=True, probs=True)
+#     im = Image.fromarray(im_array[..., ::-1])  # RGB PIL image
+#     im.show()  # show image
 
 """
 def main():

@@ -1,1 +1,5 @@
-*.pt
+src/runs
+src/*.jpg
+runs/
+yolov8n.pt
+yolov8x.pt
