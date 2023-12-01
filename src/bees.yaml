@@ -1,0 +1,8 @@
+data:
+train: C:\Users\Jakob\Documents\GitHub\enm156-2023-er2\datasets\beedata\images\train
+val: C:\Users\Jakob\Documents\GitHub\enm156-2023-er2\datasets\beedata\images\val
+
+# Classes
+names:
+  0: drone
+  1: worker
