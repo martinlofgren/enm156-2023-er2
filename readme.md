@@ -18,3 +18,24 @@ To use it on multiple files at once, it can be scripted (in *nix:es):
 ```sh
 $ for f in *.xml; do python src/xml-to-yolo.py $f; done
 ```
+
+## Generating synthetic data
+
+`src/generate_synthetic_images.py` is a quick n' dirty script for generating
+synthetic data containing (drone) bees on various backdrops. It assumes
+background images and drone images in specific locations, and outputs images
+and yolo annotation `.txt` files in the same directory as the script is run.
+
+### Known bugs
+
+When trying to find a place to put a bee without overlapping previously placed
+bees, the script might block forever if there's no place available. There's no
+detection of this in the script, so in this case, the script needs to be
+terminated. One way to handle this would be to use the
+[timeout](https://man7.org/linux/man-pages/man1/timeout.1.html) when invoking
+the script. So, if you want to generate 1000 images, one could do something
+like this:
+
+```sh
+$ for i in $(seq 1000); do timeout --signal=SIGINT 2 python3 src/generate-synthetic-images.py; done
+```
