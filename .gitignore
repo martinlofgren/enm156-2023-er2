@@ -3,3 +3,7 @@ src/*.jpg
 runs/
 yolov8n.pt
 yolov8x.pt
+synthetic-*
+*~
+venv/
+__pycache__/
