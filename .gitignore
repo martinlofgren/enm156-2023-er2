@@ -7,3 +7,4 @@ synthetic-*
 *~
 venv/
 __pycache__/
+*.zip
