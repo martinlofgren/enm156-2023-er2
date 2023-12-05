@@ -45,8 +45,6 @@ def add_bee(ctx):
         x0 = random.randint(0, bg_width - fg_width)
         y0 = random.randint(0, bg_height - fg_height)
 
-        print(f'randomized {x0}, {y0}')
-
         box = {
             'x': x0 / bg_width,
             'y': y0 / bg_height,
@@ -84,4 +82,3 @@ if __name__ == '__main__':
         f.write('\n'.join(lines))
 
     print(f'Generated {out_image_file_name} with {n_bees} bees and saved annotations in {out_annotation_file_name}')
-    print(ctx['boxes'])
