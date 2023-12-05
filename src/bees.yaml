@@ -1,0 +1,8 @@
+data:
+train: .\datasets\beedata\images\train
+val: .\datasets\beedata\images\val
+
+# Classes
+names:
+  0: drone
+  1: worker
