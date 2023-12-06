@@ -6,8 +6,11 @@ import os
 import uuid
 from pathlib import Path
 
-BG_DIR = 'datasets/synthetic-raw/bg-images'
-FG_DIR = 'datasets/synthetic-raw/bee/drones'
+BG_DIR = '../datasets/synthetic-raw/bg-images'
+FG_DIR = '../datasets/synthetic-raw/bee/drones'
+LABEL_SAVE_PATH = '../datasets/synthetics/labels'
+IMAGE_SAVE_PATH = '../datasets/synthetics/images'
+
 DRONE_LABEL = 1
 
 def intersects(this, that):
@@ -77,8 +80,8 @@ if __name__ == '__main__':
     out_image_file_name = Path(f'synthetic-{uuid.uuid4()}.jpg')
     out_annotation_file_name = out_image_file_name.with_suffix('.txt')
 
-    ctx['image'].save(out_image_file_name, quality=95)
-    with open(out_annotation_file_name, 'w') as f:
+    ctx['image'].save(os.path.join(IMAGE_SAVE_PATH, out_image_file_name), quality=95)
+    with open(os.path.join(LABEL_SAVE_PATH, out_annotation_file_name), 'w') as f:
         f.write('\n'.join(lines))
 
     print(f'Generated {out_image_file_name} with {n_bees} bees and saved annotations in {out_annotation_file_name}')
