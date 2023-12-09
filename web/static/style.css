@@ -1,0 +1,51 @@
+body {
+    background-color: #222;
+}
+
+#img_res {
+    max-width: 100%;
+    height: auto
+}
+
+hr {
+    margin: 12px 0px 12px 0px;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 0px;
+    transition: background .4s ease-in-out;
+    border-radius: 10px;
+}
+
+input[type=submit] {
+    color: #aaa;
+    background: #333;
+}
+
+input[type=file] {
+    color: #aaa;
+    padding-left: 0;
+}
+
+input[type=file]::file-selector-button {
+    border-radius: 10px;
+    margin-right: 20px;
+    border: none;
+    background: #333;
+    padding: 12px 20px;
+    color: #aaa;
+    cursor: pointer;
+    transition: background .25s ease-in-out;
+}
+
+input[type=submit]:hover {
+    background: #3a3a4a;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #3a3a4a;
+}
+

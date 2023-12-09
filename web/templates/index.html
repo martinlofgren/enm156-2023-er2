@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bee classifier</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <form action="/detect" enctype="multipart/form-data" method="POST" id="form">
+      <input name="img" type="file" accept="image/*"/>
+      <input type="submit" value="Detect those bees!" id="submit_btn"/>
+    </form>
+
+    <hr>
+
+    <img id="img_res">
+  </body>
+  <script src="script.js"></script>
+</html>
