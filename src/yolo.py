@@ -2,11 +2,12 @@ from ultralytics import YOLO
 from PIL import Image
 
 
-image_path1 = "C:/Users/Jakob/OneDrive - Chalmers/ENM156 - Hållbar utveckling och etik/Bees/AWS/Pollen/beehive/images/beehive-2020-08-10_20-10-32.jpg"
+image_path1 = "C:/Users/nilsa/Desktop/BiBilder/test"
+image_path2 = "c:/Users/nilsa/Pictures/mcbees.jpg"
 video_path = "C:/Users/Jakob\OneDrive - Chalmers/ENM156 - Hållbar utveckling och etik/Bees/video_le1/beehive-2020-07-21_09-59-24.mp4"
-model = YOLO('best.pt')
+model = YOLO('100eXL.pt')
 
-results = model(image_path1)
+results = model(image_path1, conf = 0.5)
 
 for r in results:
     im_array = r.plot(conf=True, line_width=2, font_size=2, font='Arial.ttf', pil=False, img=None,
