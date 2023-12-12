@@ -11,7 +11,8 @@ FG_DIR = '../datasets/synthetic-raw/bee/drones'
 LABEL_SAVE_PATH = '../datasets/synthetics/labels'
 IMAGE_SAVE_PATH = '../datasets/synthetics/images'
 
-DRONE_LABEL = 1
+DRONE_LABEL = 0
+WORKER_LABEL = 1
 
 def intersects(this, that):
     '''Detect if one rectangle intersects another'''

@@ -1,6 +1,6 @@
 # Loop through 5000 iterations
 $maxIterations = 5000
-$timeOutInSeconds = 2
+$timeOutInSeconds = 1
 for ($i = 1; $i -le $maxIterations; $i++) {
     # Start a new process (Python script) and wait for it to finish
     $process = Start-Process -FilePath "python3" -ArgumentList "generate-synthetic-images.py" -PassThru -WindowStyle Hidden
